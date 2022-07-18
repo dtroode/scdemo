@@ -18,6 +18,6 @@ jobs:
           username: ${{ secrets.SBER_CLOUD_USER }}
           password: ${{ secrets.SBER_CLOUD_PASSWORD }}
       - name: Build the Docker image
-        run: sudo docker build . --file assets/Dockerfile --tag swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
+        run: docker build . --file assets/Dockerfile --tag swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
       - name: Push image
-        run: sudo docker push swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
+        run: docker push swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
