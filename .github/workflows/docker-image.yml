@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file assets/Dockerfile --tag bookshelf:latest
+    - name: Auth in Cloud repository
+      run: docker login -u ${{ secrets.SBER_CLOUD_USER }} -p ${{ secrets.SBER_CLOUD_PASSWORD }} swr.ru-moscow-1.hc.sbercloud.ru
+    - name: Tag image before pushing
+      run: docker tag bookshelf:latest swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
+    - name: Push image
+      run: sudo docker push swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
