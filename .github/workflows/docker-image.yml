@@ -21,12 +21,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file assets/Dockerfile --tag bookshelf:latest
+      run: docker build . --file assets/Dockerfile --tag swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
   push:
     needs: [login, build]
     runs-on: ubuntu-latest
     steps:
-    - name: Tag image before pushing
-      run: docker tag bookshelf:latest swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
     - name: Push image
       run: sudo docker push swr.ru-moscow-1.hc.sbercloud.ru/${{ secrets.SBER_CLOUD_REPOSITORY_USER }}/bookshelf:latest
