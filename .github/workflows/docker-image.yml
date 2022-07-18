@@ -23,6 +23,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file assets/Dockerfile --tag bookshelf:latest
   push:
+    needs: [login, build]
     runs-on: ubuntu-latest
     steps:
     - name: Tag image before pushing
