@@ -40,7 +40,7 @@ public class ReaderController {
             @RequestParam(value = "year", required = false) Short year,
             @RequestParam(value = "genre", required = false) String genre,
             @RequestParam(value = "publisher", required = false) String publisher,
-            @RequestParam(value = "author", required = false) List<Author> authors,
+            @RequestParam(value = "authors", required = false) List<Author> authors,
             @RequestParam(value = "title", required = false) String title) {
         try {
             List<Book> books = new ArrayList<Book>();
