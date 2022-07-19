@@ -1,7 +1,5 @@
 package com.example.scdemo.entity;
 
-import com.example.scdemo.entity.Author;
-
 import javax.persistence.*;
 import java.util.*;
 
