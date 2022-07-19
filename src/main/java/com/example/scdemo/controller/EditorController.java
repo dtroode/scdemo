@@ -89,6 +89,7 @@ public class EditorController {
                 // Next we update book with filename and save changes to Context.
                 Book _book = book.get();
                 _book.addFile(filename);
+                _book.setFileAdded();
                 bookRepository.save(_book);
 
                 return new ResponseEntity<>(new ResponseMessage(message), HttpStatus.OK);
